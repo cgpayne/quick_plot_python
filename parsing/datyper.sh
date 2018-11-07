@@ -1,4 +1,4 @@
-file=181029_ar40_both.dat
+file=[insert]
 prefix='  0	'
 lfrom=3
 lto=73
