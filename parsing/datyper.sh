@@ -1,7 +1,10 @@
-file=[insert]
-prefix='  0	'
-lfrom=3
-lto=73
+file=${1}
+lfrom=${2}
+lto=${3}
+prenum=${4}
+
+
+prefix="  ${prenum}	"
 
 for ((i=$lfrom; i<=$lto; i++))
 do

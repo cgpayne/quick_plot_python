@@ -1,10 +1,16 @@
 #!/usr/bin/env python
 
+import sys
 from matplotlib.pylab import *
 
 
-filebase = '181029_ar40_both_retry'
-datlab = {0:'exp', 1:'GH'}
+filebase = sys.argv[1]
+curvenum = int(sys.argv[2])
+strlab = sys.argv[3:3+curvenum]
+
+datlab  = {}
+for i in range(curvenum):
+  datlab[i] = strlab[i]
 
 
 def ParseFile(fname):
