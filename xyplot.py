@@ -4,9 +4,9 @@ import sys
 from matplotlib.pylab import *
 
 
-filebase = sys.argv[1]
-curvenum = int(sys.argv[2])
-strlab = sys.argv[3:3+curvenum]
+filebase = sys.argv[1]           # the basename of the file containing the data - output will be basename.pdf
+curvenum = int(sys.argv[2])      # the number of curves to be plotted (on the same single basic plot)
+strlab = sys.argv[3:3+curvenum]  # the subsequent curve labels, for eg: 'CP' 'GH' 'SB'
 
 datlab  = {}
 for i in range(curvenum):
