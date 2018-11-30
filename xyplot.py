@@ -7,20 +7,26 @@ from matplotlib.pylab import *
 filebase = sys.argv[1]             # the basename of the file containing the data - output will be basename.pdf
 plotopt = sys.argv[2]              # 'a' = plot, 'b' = semilogy
 curvenum = int(sys.argv[3])        # the number of curves to be plotted (on the same single basic plot)
-strlab = sys.argv[4:4+curvenum]    # the subsequent curve labels, for eg: 'CP' 'GH' 'SB'
+strlab = sys.argv[4:4+curvenum]    # the subsequent curve labels, for eg: 'exp' 'GH' '$\hbar\tilde{\omega}=10$' '$\hbar\tilde{\omega}=13$' '$\hbar\tilde{\omega}=15$' '$\hbar\tilde{\omega}=20$'
 
-klines = {0:'-', 1:'-', 2:'-', 3:'-', 4:'-o', 5:'-o'}
+klines = {0:'-', 1:'-', 2:'-', 3:'-', 4:'-', 5:'-'}
+#klines = {0:'-o', 1:'-o', 2:'-o', 3:'-o', 4:'-o', 5:'-o'}
 kcolor = {0:'blue', 1:'red', 2:'green', 3:'orange', 4:'purple', 5:'yellow'}
+legpos = 'upper right'  # 'upper left', 'upper right', 'lower left', 'lower right'
 
-xyauto = 'on'
-xdel = 0
-ydel = 0
+#xyauto = 'on'
+#xdel = 0
+#ydel = 0
 
-#xyauto = 'off'
-#xmin = 0
+xyauto = 'off'
+xmin = 0
 #xmax = 3
 #ymin = 0.00005
-#ymax = 1
+#xmax = 4
+#ymin = 0.00001
+xmax = 4.5
+ymin = 0.00000003
+ymax = 1
 
 
 datlab  = {}
@@ -72,10 +78,10 @@ if xyauto == 'on':
   xlim(hmin(data,'x')-xdel, hmax(data,'x')+xdel)
   ylim(hmin(data,'y')-ydel, hmax(data,'y')+ydel)
 else:
-  xlim(0, 3)
-  ylim(0.00005, 1)
+  xlim(xmin, xmax)
+  ylim(ymin, ymax)
 
-legend(loc='lower left')
+legend(loc=legpos)
 
 
 plt.tight_layout()
