@@ -20,12 +20,20 @@ legpos = 'upper right'  # 'upper left', 'upper right', 'lower left', 'lower righ
 
 xyauto = 'off'
 xmin = 0
+#xmax = 0.05
+#ymin = 0.99
+#xmax = 0.5
+#ymin = 0.5
+xmax = 1.5
+ymin = 0.0001
+#xmax = 2.5
+#ymin = 0.0001
 #xmax = 3
 #ymin = 0.00005
 #xmax = 4
 #ymin = 0.00001
-xmax = 4.5
-ymin = 0.00000003
+#xmax = 4.5
+#ymin = 0.00000003
 ymax = 1
 
 
@@ -84,7 +92,7 @@ else:
 legend(loc=legpos)
 
 
-plt.tight_layout()
+tight_layout()
 savefig(filebase + '_plot' + '.pdf')
 
 show()

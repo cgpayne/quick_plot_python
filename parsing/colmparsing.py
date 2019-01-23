@@ -26,6 +26,6 @@ with open(outfile,'wb') as f:
       print 'popt = ', popt
       print 'exiting...'
       exit()
-    f.write(line) 
+    f.write(line)
 
 f.close()
