@@ -14,18 +14,18 @@ klines = {0:'-', 1:'-', 2:'-', 3:'-', 4:'-', 5:'-'}
 kcolor = {0:'blue', 1:'red', 2:'green', 3:'orange', 4:'purple', 5:'yellow'}
 legpos = 'upper right'  # 'upper left', 'upper right', 'lower left', 'lower right'
 
-#xyauto = 'on'
-#xdel = 0
-#ydel = 0
+xyauto = 'on'
+xdel = 0
+ydel = 0
 
-xyauto = 'off'
-xmin = 0
+#xyauto = 'off'
+#xmin = 0
 #xmax = 0.05
 #ymin = 0.99
 #xmax = 0.5
 #ymin = 0.5
-xmax = 1.5
-ymin = 0.0001
+#xmax = 1.5
+#ymin = 0.0001
 #xmax = 2.5
 #ymin = 0.0001
 #xmax = 3
@@ -34,7 +34,7 @@ ymin = 0.0001
 #ymin = 0.00001
 #xmax = 4.5
 #ymin = 0.00000003
-ymax = 1
+#ymax = 1
 
 
 datlab  = {}

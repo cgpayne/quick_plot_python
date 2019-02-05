@@ -10,8 +10,11 @@ popt = sys.argv[3]         # 'a' = (data), 'b' = abs(data)
 colm = int(sys.argv[4])    # number of the column (start counting at 0) which you want to parse out
 
 
-matrix = open(infile).read()
-matrix = [item.split() for item in matrix.split('\n')[:-1]]
+matrix = []
+with open(infile) as f:
+  for line in f:
+    if '#' in line: continue
+    matrix.append(line.split())
 matrix = np.array(matrix)
 A = matrix[:,[0,colm]]
 
