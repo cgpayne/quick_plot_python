@@ -3,21 +3,23 @@
 import sys
 import numpy as np
 
-
 infile = sys.argv[1]       # input file name
 outfile = sys.argv[2]      # output file name
-popt = sys.argv[3]         # 'a' = (data), 'b' = abs(data)
-colm = int(sys.argv[4])    # number of the column (start counting at 0) which you want to parse out
+popt = sys.argv[3]         # 'a' = (colmR), 'b' = abs(colmR)
+colmL = int(sys.argv[4])   # the column number (start counting at 0) in the data which you would like to be the left column in the output 
+colmR = int(sys.argv[5])   # " " " " " " " " " " " " " " " " " " right " " " "
 
 
+# read in and parse the data
 matrix = []
 with open(infile) as f:
   for line in f:
     if '#' in line: continue
     matrix.append(line.split())
 matrix = np.array(matrix)
-A = matrix[:,[0,colm]]
+A = matrix[:,[colmL,colmR]]
 
+# print data to file
 with open(outfile,'wb') as f:
   for i in range(0,A.shape[0]):
     if popt == 'a':
@@ -30,5 +32,5 @@ with open(outfile,'wb') as f:
       print 'exiting...'
       exit()
     f.write(line)
-
 f.close()
+

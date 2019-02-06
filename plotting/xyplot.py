@@ -3,7 +3,6 @@
 import sys
 from matplotlib.pylab import *
 
-
 filebase = sys.argv[1]             # the basename of the file containing the data - output will be basename.pdf
 plotopt = sys.argv[2]              # 'a' = plot, 'b' = semilogy
 curvenum = int(sys.argv[3])        # the number of curves to be plotted (on the same single basic plot)
@@ -12,29 +11,20 @@ strlab = sys.argv[4:4+curvenum]    # the subsequent curve labels, for eg: 'exp' 
 klines = {0:'-', 1:'-', 2:'-', 3:'-', 4:'-', 5:'-'}
 #klines = {0:'-o', 1:'-o', 2:'-o', 3:'-o', 4:'-o', 5:'-o'}
 kcolor = {0:'blue', 1:'red', 2:'green', 3:'orange', 4:'purple', 5:'yellow'}
-legpos = 'upper right'  # 'upper left', 'upper right', 'lower left', 'lower right'
+legpos = 'lower right'  # 'upper left', 'upper right', 'lower left', 'lower right'
+figXlen = 9
+figYlen = 6
+
 
 xyauto = 'on'
 xdel = 0
 ydel = 0
 
 #xyauto = 'off'
-#xmin = 0
-#xmax = 0.05
-#ymin = 0.99
-#xmax = 0.5
-#ymin = 0.5
-#xmax = 1.5
-#ymin = 0.0001
-#xmax = 2.5
-#ymin = 0.0001
-#xmax = 3
-#ymin = 0.00005
-#xmax = 4
-#ymin = 0.00001
-#xmax = 4.5
-#ymin = 0.00000003
-#ymax = 1
+#xmin = 5
+#xmax = 55
+#ymin = 4e-41
+#ymax = 4.1e-39
 
 
 datlab  = {}
@@ -68,7 +58,7 @@ def hmax(array, string):
 
 
 data = ParseFile(filebase + '.dat')
-fig = figure(figsize=(6,6))
+fig = figure(figsize=(figXlen,figYlen))
 
 
 for kind in sorted(data):
