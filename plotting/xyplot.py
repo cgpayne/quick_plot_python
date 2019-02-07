@@ -2,36 +2,25 @@
 
 import os
 import sys
+import ConfigParser
 from matplotlib.pylab import *
 
-filename = sys.argv[1]             # the file containing the data - output will be basename.pdf
-plotopt = sys.argv[2]              # 'a' = plot, 'b' = semilogy
-curvenum = int(sys.argv[3])        # the number of curves to be plotted (on the same single basic plot)
-strlab = sys.argv[4:4+curvenum]    # the subsequent curve labels, for eg: 'exp' 'GH' '$\hbar\tilde{\omega}=10$' '$\hbar\tilde{\omega}=13$' '$\hbar\tilde{\omega}=15$' '$\hbar\tilde{\omega}=20$'
-
-klines = {0:'-', 1:'-', 2:'-', 3:'-', 4:'-', 5:'-'}
-#klines = {0:'-o', 1:'-o', 2:'-o', 3:'-o', 4:'-o', 5:'-o'}
-kcolor = {0:'blue', 1:'red', 2:'green', 3:'orange', 4:'purple', 5:'yellow'}
-legpos = 'lower right'  # 'upper left', 'upper right', 'lower left', 'lower right'
-figXlen = 9
-figYlen = 6
+filename = sys.argv[1]    # the file containing the data - output will be basename.pdf
+confile = sys.argv[2]     # the plotting config file, see 'config.in' for the default structure
 
 
-#xyauto = 'on'
-#xdel = 0
-#ydel = 0
-
-xyauto = 'off'
-xmin = 5
-xmax = 55
-ymin = 4e-41
-ymax = 4.1e-39
-
-
-datlab  = {}
-for i in range(curvenum):
-  datlab[i] = strlab[i]
-
+def ConfigSectionMap(section):
+  dict1 = {}
+  options = Config.options(section)
+  for option in options:
+    try:
+      dict1[option] = Config.get(section, option)
+      if dict1[option] == -1:
+        DebugPrint("skip: %s" % option)
+    except:
+      print("exception on %s!" % option)
+      dict1[option] = None
+  return dict1
 
 def ParseFile(fname):
   f = open(fname)
@@ -58,35 +47,52 @@ def hmax(array, string):
   return max(maxes)
 
 
+# set-up the config
+Config = ConfigParser.ConfigParser()
+Config.optionxform=str  # this overrides the default case-insensitivity
+Config.read(confile)
+klabs = ConfigSectionMap('klabs')
+xylims = ConfigSectionMap('xylims')
+figparms = ConfigSectionMap('figparms')
+klines = ConfigSectionMap('klines')
+kcolors = ConfigSectionMap('kcolors')
+
+# do some prep
 filebase, fileext = os.path.splitext(filename)
 filebase = os.path.basename(filebase)
 data = ParseFile(filename)
-fig = figure(figsize=(figXlen,figYlen))
+fig = figure(figsize=(float(figparms['Xlen']),float(figparms['Ylen'])))
 
-
+# plot the stuff
+plotopt = figparms['opt']
 for kind in sorted(data):
   if plotopt == 'a':
-    plot(data[kind]['x'], data[kind]['y'], klines[kind], color=kcolor[kind], label=datlab[kind])
+    plot(data[kind]['x'], data[kind]['y'], klines[str(kind)], color=kcolors[str(kind)], label=klabs[str(kind)])
   elif plotopt == 'b':
-    semilogy(data[kind]['x'], data[kind]['y'], klines[kind], color=kcolor[kind], label=datlab[kind])
+    semilogy(data[kind]['x'], data[kind]['y'], klines[str(kind)], color=kcolors[str(kind)], label=klabs[str(kind)])
+  elif plotopt == 'c':
+    loglog(data[kind]['x'], data[kind]['y'], klines[str(kind)], color=kcolors[str(kind)], label=klabs[str(kind)])
   else:
-    print 'plotopt not recognized!'
-    print 'plotopt = ', plotopt
+    print 'figparms[opt] not recognized!'
+    print 'figparms[opt] =',plotopt
     print 'exiting...'
     exit()
 
-if xyauto == 'on':
+# set the limits
+if xylims['xyauto'] == 'on':
+  xdel = float(xylims['xdel'])
+  ydel = float(xylims['ydel'])
   xlim(hmin(data,'x')-xdel, hmax(data,'x')+xdel)
   ylim(hmin(data,'y')-ydel, hmax(data,'y')+ydel)
 else:
-  xlim(xmin, xmax)
-  ylim(ymin, ymax)
+  xlim(float(xylims['xmin']), float(xylims['xmax']))
+  ylim(float(xylims['ymin']), float(xylims['ymax']))
 
-legend(loc=legpos)
-
-
+# other formatting
+legend(loc=figparms['legpos'])
 tight_layout()
-savefig(filebase + '_plot' + '.pdf')
 
+
+savefig(filebase + '_plot' + '.pdf')
 show()
 

@@ -14,12 +14,14 @@ then
   mkdir -p data/data_raw
   mkdir -p parsing
   mkdir -p plotting
+  mkdir -p plotting/stored_configs
   mkdir -p stored_plots
   
   echo 'reshuffling files...'
   mv parsecolm.py parsing 2>/dev/null
   mv typedat.sh parsing 2>/dev/null
   mv xyplot.py plotting 2>/dev/null
+  mv config.in plotting 2>/dev/null
   
   echo 'making symlinks...'
   cd parsing
@@ -39,6 +41,7 @@ then
   mv parsing/parsecolm.py .
   mv parsing/typedat.sh .
   mv plotting/xyplot.py .
+  mv plotting/config.in .
   
   echo 'deleting the fat...'
   command rm -rf data
