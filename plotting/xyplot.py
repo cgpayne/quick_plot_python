@@ -89,7 +89,8 @@ else:
   ylim(float(xylims['ymin']), float(xylims['ymax']))
 
 # other formatting
-legend(loc=figparms['legpos'])
+legend(loc=figparms['legpos'], fancybox=0, edgecolor='black')
+tick_params(which='both', direction='in', left=1, bottom=1, top=1, right=1)
 tight_layout()
 
 
