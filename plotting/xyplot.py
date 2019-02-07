@@ -57,6 +57,7 @@ figparms = ConfigSectionMap('figparms')
 FS = ConfigSectionMap('FS')
 klines = ConfigSectionMap('klines')
 kcolors = ConfigSectionMap('kcolors')
+korders = ConfigSectionMap('korders')
 
 # some pre-formatting
 #matplotlib.rcParams['mathtext.fontset'] = 'stix'    # this is to switch to latex font style
@@ -72,11 +73,11 @@ fig = figure(figsize=(float(figparms['Xlen']),float(figparms['Ylen'])))
 plotopt = figparms['opt']
 for kind in sorted(data):
   if plotopt == 'a':
-    plot(data[kind]['x'], data[kind]['y'], klines[str(kind)], color=kcolors[str(kind)], label=klabs[str(kind)])
+    plot(data[kind]['x'], data[kind]['y'], klines[str(kind)], color=kcolors[str(kind)], label=klabs[str(kind)], zorder=int(korders[str(kind)]))
   elif plotopt == 'b':
-    semilogy(data[kind]['x'], data[kind]['y'], klines[str(kind)], color=kcolors[str(kind)], label=klabs[str(kind)])
+    semilogy(data[kind]['x'], data[kind]['y'], klines[str(kind)], color=kcolors[str(kind)], label=klabs[str(kind)], zorder=int(korders[str(kind)]))
   elif plotopt == 'c':
-    loglog(data[kind]['x'], data[kind]['y'], klines[str(kind)], color=kcolors[str(kind)], label=klabs[str(kind)])
+    loglog(data[kind]['x'], data[kind]['y'], klines[str(kind)], color=kcolors[str(kind)], label=klabs[str(kind)], zorder=int(korders[str(kind)]))
   else:
     print 'figparms[opt] not recognized!'
     print 'figparms[opt] =',plotopt

@@ -56,3 +56,12 @@ legfs:  16
 3: orange
 4: purple
 5: yellow
+
+# the zorder (i.e., plot order) for each curve
+[korders]
+0: 0
+1: 1
+2: 2
+3: 3
+4: 4
+5: 5
