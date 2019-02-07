@@ -20,9 +20,18 @@ ydel: 0
 # 'legpos': 'upper right', 'upper left', 'lower left', 'lower right'
 [figparms]
 opt: a
-legpos: upper right
 Xlen: 6
 Ylen: 6
+Xlab: $X$
+Ylab: $Y$
+legpos: upper right
+
+# font sizes
+[FS]
+Xlabfs: 20
+Ylabfs: 20
+tickfs: 12
+legfs:  16
 
 # the line-type for each curve
 [klines]

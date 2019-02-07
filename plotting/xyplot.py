@@ -54,8 +54,13 @@ Config.read(confile)
 klabs = ConfigSectionMap('klabs')
 xylims = ConfigSectionMap('xylims')
 figparms = ConfigSectionMap('figparms')
+FS = ConfigSectionMap('FS')
 klines = ConfigSectionMap('klines')
 kcolors = ConfigSectionMap('kcolors')
+
+# some pre-formatting
+#matplotlib.rcParams['mathtext.fontset'] = 'stix'    # this is to switch to latex font style
+#matplotlib.rcParams['font.family'] = 'STIXGeneral'  # " " " " " " " "
 
 # do some prep
 filebase, fileext = os.path.splitext(filename)
@@ -89,8 +94,11 @@ else:
   ylim(float(xylims['ymin']), float(xylims['ymax']))
 
 # other formatting
-legend(loc=figparms['legpos'], fancybox=0, edgecolor='black')
-tick_params(which='both', direction='in', left=1, bottom=1, top=1, right=1)
+ticklabel_format(style='sci', useMathText=True)
+tick_params(labelsize=float(FS['tickfs']), which='both', direction='in', left=True, bottom=True, top=True, right=True)
+xlabel(figparms['Xlab'], fontsize=float(FS['Xlabfs']))
+ylabel(figparms['Ylab'], fontsize=float(FS['Ylabfs']))
+legend(fontsize=float(FS['legfs']), loc=figparms['legpos'], fancybox=False, edgecolor='black')
 tight_layout()
 
 
