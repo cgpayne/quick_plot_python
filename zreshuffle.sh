@@ -26,6 +26,7 @@ then
   ln -sf ../data/* .
   cd ../plotting
   ln -sf ../data/data_final .
+  ln -sf ../stored_plots .
   cd ..
 elif [ $myopt = 'clear' ]
 then

@@ -1,9 +1,10 @@
 #!/usr/bin/env python
 
+import os
 import sys
 from matplotlib.pylab import *
 
-filebase = sys.argv[1]             # the basename of the file containing the data - output will be basename.pdf
+filename = sys.argv[1]             # the file containing the data - output will be basename.pdf
 plotopt = sys.argv[2]              # 'a' = plot, 'b' = semilogy
 curvenum = int(sys.argv[3])        # the number of curves to be plotted (on the same single basic plot)
 strlab = sys.argv[4:4+curvenum]    # the subsequent curve labels, for eg: 'exp' 'GH' '$\hbar\tilde{\omega}=10$' '$\hbar\tilde{\omega}=13$' '$\hbar\tilde{\omega}=15$' '$\hbar\tilde{\omega}=20$'
@@ -16,15 +17,15 @@ figXlen = 9
 figYlen = 6
 
 
-xyauto = 'on'
-xdel = 0
-ydel = 0
+#xyauto = 'on'
+#xdel = 0
+#ydel = 0
 
-#xyauto = 'off'
-#xmin = 5
-#xmax = 55
-#ymin = 4e-41
-#ymax = 4.1e-39
+xyauto = 'off'
+xmin = 5
+xmax = 55
+ymin = 4e-41
+ymax = 4.1e-39
 
 
 datlab  = {}
@@ -57,7 +58,9 @@ def hmax(array, string):
   return max(maxes)
 
 
-data = ParseFile(filebase + '.dat')
+filebase, fileext = os.path.splitext(filename)
+filebase = os.path.basename(filebase)
+data = ParseFile(filename)
 fig = figure(figsize=(figXlen,figYlen))
 
 
