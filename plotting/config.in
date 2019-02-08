@@ -1,8 +1,11 @@
 # the labels for each curve
 [klabs]
-num: 2
 0: first
 1: second
+2: third
+3: fourth
+4: fifth
+5: sixth
 
 # limits for the plot
 [xylims]
