@@ -19,15 +19,22 @@ ydel: 0
 #ymax: 1
 
 # figure parameters
-# 'opt': 'a' = plot, 'b' = semilogy, 'c' = loglog
 # 'legpos': 'upper right', 'upper left', 'lower left', 'lower right'
 [figparms]
-opt: a
 Xlen: 6
 Ylen: 6
 Xlab: $X$
 Ylab: $Y$
 legpos: upper right
+
+# figure options
+# 'plot': 'a' = plot, 'b' = semilogy, 'c' = loglog
+# 'tex' = switch global font-style to MathTex
+# 'esci' = switch scale marker from base-e notation to scienfitic (can only use when applicable)
+[figopts]
+plot: a
+tex: off
+esci: off
 
 # font sizes
 [FS]

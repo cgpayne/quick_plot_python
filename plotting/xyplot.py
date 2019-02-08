@@ -54,14 +54,16 @@ Config.read(confile)
 klabs = ConfigSectionMap('klabs')
 xylims = ConfigSectionMap('xylims')
 figparms = ConfigSectionMap('figparms')
+figopts = ConfigSectionMap('figopts')
 FS = ConfigSectionMap('FS')
 klines = ConfigSectionMap('klines')
 kcolors = ConfigSectionMap('kcolors')
 korders = ConfigSectionMap('korders')
 
 # some pre-formatting
-#matplotlib.rcParams['mathtext.fontset'] = 'stix'    # this is to switch to latex font style
-#matplotlib.rcParams['font.family'] = 'STIXGeneral'  # " " " " " " " "
+if figopts['tex'] == 'on':
+  matplotlib.rcParams['mathtext.fontset'] = 'stix'    # this is to switch to latex font style
+  matplotlib.rcParams['font.family'] = 'STIXGeneral'  # " " " " " " " "
 
 # do some prep
 filebase, fileext = os.path.splitext(filename)
@@ -70,7 +72,7 @@ data = ParseFile(filename)
 fig = figure(figsize=(float(figparms['Xlen']),float(figparms['Ylen'])))
 
 # plot the stuff
-plotopt = figparms['opt']
+plotopt = figopts['plot']
 for kind in sorted(data):
   if plotopt == 'a':
     plot(data[kind]['x'], data[kind]['y'], klines[str(kind)], color=kcolors[str(kind)], label=klabs[str(kind)], zorder=int(korders[str(kind)]))
@@ -79,8 +81,8 @@ for kind in sorted(data):
   elif plotopt == 'c':
     loglog(data[kind]['x'], data[kind]['y'], klines[str(kind)], color=kcolors[str(kind)], label=klabs[str(kind)], zorder=int(korders[str(kind)]))
   else:
-    print 'figparms[opt] not recognized!'
-    print 'figparms[opt] =',plotopt
+    print 'figopts[plot] not recognized!'
+    print 'figopts[plot] =',plotopt
     print 'exiting...'
     exit()
 
@@ -95,7 +97,8 @@ else:
   ylim(float(xylims['ymin']), float(xylims['ymax']))
 
 # other formatting
-#ticklabel_format(style='sci', useMathText=True)  # to put scale from 'e' notation to scientific, if applicable
+if figopts['esci'] == 'on':
+  ticklabel_format(style='sci', useMathText=True)  # to put scale from 'e' notation to scientific, if applicable
 tick_params(labelsize=float(FS['tickfs']), which='both', direction='in', left=True, bottom=True, top=True, right=True)
 xlabel(figparms['Xlab'], fontsize=float(FS['Xlabfs']))
 ylabel(figparms['Ylab'], fontsize=float(FS['Ylabfs']))
