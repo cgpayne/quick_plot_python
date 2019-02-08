@@ -95,7 +95,7 @@ else:
   ylim(float(xylims['ymin']), float(xylims['ymax']))
 
 # other formatting
-ticklabel_format(style='sci', useMathText=True)
+#ticklabel_format(style='sci', useMathText=True)  # to put scale from 'e' notation to scientific, if applicable
 tick_params(labelsize=float(FS['tickfs']), which='both', direction='in', left=True, bottom=True, top=True, right=True)
 xlabel(figparms['Xlab'], fontsize=float(FS['Xlabfs']))
 ylabel(figparms['Ylab'], fontsize=float(FS['Ylabfs']))

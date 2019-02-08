@@ -31,7 +31,7 @@ legpos: upper right
 Xlabfs: 20
 Ylabfs: 20
 tickfs: 12
-legfs:  16
+legfs:  14
 
 # the line-type for each curve
 [klines]
