@@ -4,7 +4,7 @@ import sys
 import numpy as np
 
 infile = sys.argv[1]           # input file name
-outfile = sys.argv[2]          # output file name
+outfile = sys.argv[2]          # output file name, NOTE: date should correspond to date of infile, whereas dates in data_final correspond to compilation date
 popt = sys.argv[3]             # 'a' = (colmR), 'b' = abs(colmR)
 colmL = int(sys.argv[4])       # the column number (start counting at 0) in the data which you would like to be the left column in the output
 colmR = int(sys.argv[5])       # " " " " " " " " " " " " " " " " " " right " " " "

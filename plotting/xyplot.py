@@ -5,7 +5,7 @@ import sys
 import ConfigParser
 from matplotlib.pylab import *
 
-filename = sys.argv[1]    # the file containing the data - output will be basename.pdf
+filename = sys.argv[1]    # the file containing the data - output will be basename.pdf (and so will retain the date a la data_final)
 confile = sys.argv[2]     # the plotting config file, see 'config.in' for the default structure
 
 
