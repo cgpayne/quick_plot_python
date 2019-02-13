@@ -22,28 +22,48 @@ def ConfigSectionMap(section):
       dict1[option] = None
   return dict1
 
-def ParseFile(fname):
-  f = open(fname)
-  data = {}
-  for line in f:
-    if '#' in line: continue
-    ldat = line.split()
-    kind = int(ldat[0])
-    if kind not in data: data[kind] = {'x':[], 'y':[]}
-    data[kind]['x'].append( float(ldat[1]) )
-    data[kind]['y'].append( float(ldat[2]) )
+def ParseFile(fname, colmL, colmR, scaleL, scaleR, optL, optR):
+  tmpmat = []
+  with open(fname) as f:
+    for line in f:
+      if '#' in line: continue
+      tmpmat.append(line.split())
+  tmpmat = np.array(tmpmat)
+  tmpmat = tmpmat[:,[colmL,colmR]]
+  data = np.zeros(tmpmat.shape)
+  for i in range(A.shape[0]):
+    if optL == 'a'
+      data[i,0] = scaleL*float(tmpmat[i,0])
+    elif optL == 'b'
+      data[i,0] = abs(scaleL*float(tmpmat[i,0]))
+    else:
+      print 'optL not recognized!'
+      print 'fname =',fname
+      print 'optL =',optL
+      print 'exiting...'
+      exit()
+    if optR == 'a'
+      data[i,1] = scaleL*float(tmpmat[i,1])
+    elif optR == 'b'
+      data[i,1] = abs(scaleL*float(tmpmat[i,1]))
+    else:
+      print 'optR not recognized!'
+      print 'fname =',fname
+      print 'optR =',optR
+      print 'exiting...'
+      exit()
   return data
 
 def hmin(array, string):
   mins = []
-  for i in range(0, len(array)):
-    mins.append( min(array[i][string]) )
+  for i in range(len(array)):
+    mins.append(min(array[i][string]))
   return min(mins)
 
 def hmax(array, string):
   maxes = []
-  for i in range(0, len(array)):
-    maxes.append( max(array[i][string]) )
+  for i in range(len(array)):
+    maxes.append(max(array[i][string]))
   return max(maxes)
 
 
@@ -51,6 +71,11 @@ def hmax(array, string):
 Config = ConfigParser.ConfigParser()
 Config.optionxform=str  # this overrides the default case-insensitivity
 Config.read(confile)
+tmp = ConfigSectionMap('tmp')
+kfiles = ConfigSectionMap('kfiles')
+kcolms = ConfigSectionMap('kcolms')
+kscales = ConfigSectionMap('kscales')
+kopts = ConfigSectionMap('kopts')
 klabs = ConfigSectionMap('klabs')
 xylims = ConfigSectionMap('xylims')
 figparms = ConfigSectionMap('figparms')
@@ -68,23 +93,36 @@ if figopts['tex'] == 'on':
 # do some prep
 filebase, fileext = os.path.splitext(filename)
 filebase = os.path.basename(filebase)
-data = ParseFile(filename)
 fig = figure(figsize=(float(figparms['Xlen']),float(figparms['Ylen'])))
+
+# parse the files for the data
+knum = int(tmp['knum'])
+data = np.zeros((0,2))
+lens = np.zeros((knum-1,1))
+for k in range(knum):
+  kL = str(k) + 'L'
+  kR = str(k) + 'R'
+  tmpdat = ParseFile(kfiles[str(k)], kcolms[kL], kcolms[kR], kscales[kL], kscales[kR], kopts[kL], kopts[kR])
+  lens[k] = np.shape(tmpdat)[0]
+  data = np.concatenate((data,tmpdat))
 
 # plot the stuff
 plotopt = figopts['plot']
-for kind in sorted(data):
+kmin = 0
+for k in range(knum):
+  kmax = lens[k] + kmin
   if plotopt == 'a':
-    plot(data[kind]['x'], data[kind]['y'], klines[str(kind)], color=kcolors[str(kind)], label=klabs[str(kind)], zorder=int(korders[str(kind)]))
+    plot(data[kmin:kmax,0], data[kmin:kmax,1], klines[str(kind)], color=kcolors[str(kind)], label=klabs[str(kind)], zorder=int(korders[str(kind)]))
   elif plotopt == 'b':
-    semilogy(data[kind]['x'], data[kind]['y'], klines[str(kind)], color=kcolors[str(kind)], label=klabs[str(kind)], zorder=int(korders[str(kind)]))
+    semilogy(data[kmin:kmax,0], data[kmin:kmax,1], klines[str(kind)], color=kcolors[str(kind)], label=klabs[str(kind)], zorder=int(korders[str(kind)]))
   elif plotopt == 'c':
-    loglog(data[kind]['x'], data[kind]['y'], klines[str(kind)], color=kcolors[str(kind)], label=klabs[str(kind)], zorder=int(korders[str(kind)]))
+    loglog(data[kmin:kmax,0], data[kmin:kmax,1], klines[str(kind)], color=kcolors[str(kind)], label=klabs[str(kind)], zorder=int(korders[str(kind)]))
   else:
     print 'figopts[plot] not recognized!'
     print 'figopts[plot] =',plotopt
     print 'exiting...'
     exit()
+  kmin = kmax
 
 # set the limits
 if xylims['xyauto'] == 'on':
