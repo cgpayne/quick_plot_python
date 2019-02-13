@@ -1,12 +1,11 @@
 #!/usr/bin/env python
 
-import os
 import sys
 import ConfigParser
 from matplotlib.pylab import *
 
-filename = sys.argv[1]    # the file containing the data - output will be basename.pdf (and so will retain the date a la data_final)
-confile = sys.argv[2]     # the plotting config file, see 'config.in' for the default structure
+confile = sys.argv[1]     # the plotting config file, see 'config.in' for the default structure
+filename = sys.argv[2]    # pdf output file name (including desired extension)
 
 
 def ConfigSectionMap(section):
@@ -31,10 +30,10 @@ def ParseFile(fname, colmL, colmR, scaleL, scaleR, optL, optR):
   tmpmat = np.array(tmpmat)
   tmpmat = tmpmat[:,[colmL,colmR]]
   data = np.zeros(tmpmat.shape)
-  for i in range(A.shape[0]):
-    if optL == 'a'
+  for i in range(data.shape[0]):
+    if optL == 'a':
       data[i,0] = scaleL*float(tmpmat[i,0])
-    elif optL == 'b'
+    elif optL == 'b':
       data[i,0] = abs(scaleL*float(tmpmat[i,0]))
     else:
       print 'optL not recognized!'
@@ -42,10 +41,10 @@ def ParseFile(fname, colmL, colmR, scaleL, scaleR, optL, optR):
       print 'optL =',optL
       print 'exiting...'
       exit()
-    if optR == 'a'
-      data[i,1] = scaleL*float(tmpmat[i,1])
-    elif optR == 'b'
-      data[i,1] = abs(scaleL*float(tmpmat[i,1]))
+    if optR == 'a':
+      data[i,1] = scaleR*float(tmpmat[i,1])
+    elif optR == 'b':
+      data[i,1] = abs(scaleR*float(tmpmat[i,1]))
     else:
       print 'optR not recognized!'
       print 'fname =',fname
@@ -90,33 +89,29 @@ if figopts['tex'] == 'on':
   matplotlib.rcParams['mathtext.fontset'] = 'stix'    # this is to switch to latex font style
   matplotlib.rcParams['font.family'] = 'STIXGeneral'  # " " " " " " " "
 
-# do some prep
-filebase, fileext = os.path.splitext(filename)
-filebase = os.path.basename(filebase)
-fig = figure(figsize=(float(figparms['Xlen']),float(figparms['Ylen'])))
-
 # parse the files for the data
 knum = int(tmp['knum'])
 data = np.zeros((0,2))
-lens = np.zeros((knum-1,1))
+lens = np.zeros(knum, dtype=np.int)
 for k in range(knum):
   kL = str(k) + 'L'
   kR = str(k) + 'R'
-  tmpdat = ParseFile(kfiles[str(k)], kcolms[kL], kcolms[kR], kscales[kL], kscales[kR], kopts[kL], kopts[kR])
+  tmpdat = ParseFile(kfiles[str(k)], int(kcolms[kL]), int(kcolms[kR]), float(kscales[kL]), float(kscales[kR]), kopts[kL], kopts[kR])
   lens[k] = np.shape(tmpdat)[0]
   data = np.concatenate((data,tmpdat))
 
 # plot the stuff
+fig = figure(figsize=(float(figparms['Xlen']),float(figparms['Ylen'])))
 plotopt = figopts['plot']
 kmin = 0
 for k in range(knum):
   kmax = lens[k] + kmin
   if plotopt == 'a':
-    plot(data[kmin:kmax,0], data[kmin:kmax,1], klines[str(kind)], color=kcolors[str(kind)], label=klabs[str(kind)], zorder=int(korders[str(kind)]))
+    plot(data[kmin:kmax,0], data[kmin:kmax,1], klines[str(k)], color=kcolors[str(k)], label=klabs[str(k)], zorder=int(korders[str(k)]))
   elif plotopt == 'b':
-    semilogy(data[kmin:kmax,0], data[kmin:kmax,1], klines[str(kind)], color=kcolors[str(kind)], label=klabs[str(kind)], zorder=int(korders[str(kind)]))
+    semilogy(data[kmin:kmax,0], data[kmin:kmax,1], klines[str(k)], color=kcolors[str(k)], label=klabs[str(k)], zorder=int(korders[str(k)]))
   elif plotopt == 'c':
-    loglog(data[kmin:kmax,0], data[kmin:kmax,1], klines[str(kind)], color=kcolors[str(kind)], label=klabs[str(kind)], zorder=int(korders[str(kind)]))
+    loglog(data[kmin:kmax,0], data[kmin:kmax,1], klines[str(k)], color=kcolors[str(k)], label=klabs[str(k)], zorder=int(korders[str(k)]))
   else:
     print 'figopts[plot] not recognized!'
     print 'figopts[plot] =',plotopt
@@ -144,6 +139,6 @@ legend(fontsize=float(FS['legfs']), loc=figparms['legpos'], fancybox=False, edge
 tight_layout()
 
 
-savefig(filebase + '_plot' + '.pdf')
+savefig(filename)
 show()
 
