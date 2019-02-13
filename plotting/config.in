@@ -6,6 +6,8 @@
 3: fourth
 4: fifth
 5: sixth
+6: seventh
+7: eigth
 
 # limits for the plot
 [xylims]
@@ -51,12 +53,16 @@ legfs:  14
 3: -
 4: -
 5: -
+6: -
+7: -
 #0: -o
 #1: -o
 #2: -o
 #3: -o
 #4: -o
 #5: -o
+#6: -o
+#7: -o
 
 # the colour for each curve
 [kcolors]
@@ -64,8 +70,10 @@ legfs:  14
 1: red
 2: green
 3: orange
-4: purple
-5: yellow
+4: magenta
+5: cyan
+6: black
+7: gray
 
 # the zorder (i.e., plot order) for each curve
 [korders]
@@ -75,3 +83,5 @@ legfs:  14
 3: 3
 4: 4
 5: 5
+6: 6
+7: 7
