@@ -1,5 +1,5 @@
 *.dat
 *.out
 *.in
-!plotting/config.in
+!config.in
 *.pdf

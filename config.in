@@ -1,0 +1,130 @@
+[tmp]
+knum: 6
+
+[kfiles]
+0: data/file1.dat
+1: data/file2.dat
+2: data/file3.dat
+3: data/file4.dat
+4: data/file5.dat
+5: data/file6.dat
+
+[kcolms]
+0L: 0
+0R: 1
+1L: 0
+1R: 1
+2L: 0
+2R: 1
+3L: 0
+3R: 1
+4L: 0
+4R: 1
+5L: 0
+5R: 1
+
+[kscales]
+0L: 1.0
+0R: 1.0
+1L: 1.0
+1R: 1.0
+2L: 1.0
+2R: 1.0
+3L: 1.0
+3R: 1.0
+4L: 1.0
+4R: 1.0
+5L: 1.0
+5R: 1.0
+
+[kopts]
+0L: a
+0R: a
+1L: a
+1R: a
+2L: a
+2R: a
+3L: a
+3R: a
+4L: a
+4R: a
+5L: a
+5R: a
+
+# the labels for each curve
+[klabs]
+0: first
+1: second
+2: third
+3: fourth
+4: fifth
+5: sixth
+
+# limits for the plot
+[xylims]
+xyauto: on
+xdel: 0
+ydel: 0
+#xyauto: off
+#xmin: 0
+#xmax: 1
+#ymin: 0
+#ymax: 1
+
+# figure parameters
+# 'legpos': 'upper right', 'upper left', 'lower left', 'lower right'
+[figparms]
+Xlen: 6
+Ylen: 6
+Xlab: $X$
+Ylab: $Y$
+legpos: upper right
+
+# figure options
+# 'plot': 'a' = plot, 'b' = semilogy, 'c' = loglog
+# 'tex' = switch global font-style to MathTex
+# 'esci' = switch scale marker from base-e notation to scienfitic (can only use when applicable)
+[figopts]
+plot: a
+tex: off
+esci: off
+
+# font sizes
+[FS]
+Xlabfs: 20
+Ylabfs: 20
+tickfs: 12
+legfs:  14
+
+# the line-type for each curve
+[klines]
+0: -
+1: -
+2: -
+3: -
+4: -
+5: -
+#0: -o
+#1: -o
+#2: -o
+#3: -o
+#4: -o
+#5: -o
+
+# the colour for each curve
+[kcolors]
+0: blue
+1: red
+2: green
+3: orange
+4: purple
+5: yellow
+
+# the zorder (i.e., plot order) for each curve
+[korders]
+0: 0
+1: 1
+2: 2
+3: 3
+4: 4
+5: 5
