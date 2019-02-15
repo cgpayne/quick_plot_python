@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-##  head -n 14 qpp.py
+##  head -n 17 qpp.py
 ##  python qpp.py config.in output_plot.pdf
 ##  By: Charlie Payne, 2018-2019
 ## DESCRIPTION
@@ -9,6 +9,9 @@
 ##  it should make some sense, especially in combination with reading the default config.in (entry names are moderately intuitive)
 ## KNOWN BUGS / DESIRED FEATURES
 ##  -- it would be nice to somehow have default values for the 'kscales' and alike, for now rely on default config.in
+##  -- add in linewidths (easy)
+##  -- maybe automate a line border
+##  -- somehow make a sub-figure setup... :|
 ## PARAMETERS
 ##  1) confile = sys.argv[1]     # the plotting config file, see 'config.in' for the default structure
 ##  2) filename = sys.argv[2]    # pdf output file name (including desired extension)
@@ -146,11 +149,10 @@ tick_params(labelsize=float(FS['tickfs']), which='both', direction='in', left=Tr
 xlabel(figparms['Xlab'], fontsize=float(FS['Xlabfs']))
 ylabel(figparms['Ylab'], fontsize=float(FS['Ylabfs']))
 legend(fontsize=float(FS['legfs']), loc=figparms['legpos'], fancybox=False, edgecolor='black')
-tight_layout()
+tight_layout(pad=0, w_pad=0, h_pad=0)
 
 # finalize
 savefig(filename)
-show()
 
 
 

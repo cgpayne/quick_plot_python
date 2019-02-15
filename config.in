@@ -44,7 +44,8 @@ legfs:  14
 # and you can parse data for each curve from the same file
 # and you can scale each axes (see 'kscales' below)
 # and you can read in the data via several different options (see 'kopts' below)
-# PS, see 'korders' below if you want to swap plotting order, i.e., you don't need to switch k_a with k_b
+# PS - see 'korders' below if you want to swap plotting order, i.e., you don't need to switch k_a with k_b
+#      however, the order below sets who's on top of who in the legend!
 [kfiles]
 0: data/file1.dat
 1: data/file2.dat
