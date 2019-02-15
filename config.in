@@ -1,7 +1,7 @@
 ## figure parameters/options
 # 'knum' = the number of curves to be plotted
 # 'plot': 'a' = plot, 'b' = semilogy, 'c' = loglog
-# 'legpos': 'upper right', 'upper left', 'lower left', 'lower right'
+# 'legpos' = legend position: 'upper right', 'upper left', 'lower left', 'lower right'
 # 'tex' = switch global font-style to MathTex
 # 'esci' = switch scale marker from base-e notation to scienfitic (can only use when applicable)
 [figparms]
