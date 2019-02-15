@@ -1,0 +1,177 @@
+## figure parameters/options
+# 'knum' = the number of curves to be plotted
+# 'plot': 'a' = plot, 'b' = semilogy, 'c' = loglog
+# 'legpos' = legend position: 'upper right', 'upper left', 'lower left', 'lower right'
+# 'tex' = switch global font-style to MathTex
+# 'esci' = switch scale marker from base-e notation to scienfitic (can only use when applicable)
+[figparms]
+knum: 8
+plot: a
+Xlen: 6
+Ylen: 6
+Xlab: $X$
+Ylab: $Y$
+legpos: upper right
+tex: off
+esci: off
+
+## limits for the plot
+# 'xauto': 'on' = automatically set the limits, 'off' = manually set the limits
+# 'x/ydel' = +/- buffer room on the axis limits
+[xylims]
+xyauto: on
+xdel: 0
+ydel: 0
+#xyauto: off
+#xmin: 0
+#xmax: 1
+#ymin: 0
+#ymax: 1
+
+## font sizes
+# 'X/Ylabfs' = for the X- and Y-labels
+# 'tickfs' = for the numbered ticks on the axes
+# 'legfs' = for the legend
+[FS]
+Xlabfs: 20
+Ylabfs: 20
+tickfs: 12
+legfs:  14
+
+## data input files for each curve
+# don't forget to set 'knum' above accordingly!
+# you can parse which columns will be taken as the X- and Y-axes (see 'kcolms' below)
+# and you can parse data for each curve from the same file
+# and you can scale each axes (see 'kscales' below)
+# and you can read in the data via several different options (see 'kopts' below)
+# PS, see 'korders' below if you want to swap plotting order, i.e., you don't need to switch k_a with k_b
+[kfiles]
+0: data/file1.dat
+1: data/file2.dat
+2: data/file3.dat
+3: data/file4.dat
+4: data/file5.dat
+5: data/file6.dat
+6: data/file7.dat
+7: data/file8.dat
+
+## the labels for each curve
+# can use latex with these strings if desired
+# quotes for spacing are not necessary (this ain't bash)
+[klabs]
+0: first
+1: second
+2: third
+3: fourth
+4: fifth
+5: sixth
+6: seventh
+7: eigth
+
+## data input file column parsing for each curve
+# choose which columns (start counting from 0) to strip from the data files as X- and Y-axes
+[kcolms]
+0X: 0
+0Y: 1
+1X: 0
+1Y: 1
+2X: 0
+2Y: 1
+3X: 0
+3Y: 1
+4X: 0
+4Y: 1
+5X: 0
+5Y: 1
+6X: 0
+6Y: 1
+7X: 0
+7Y: 1
+
+## X and Y scale factors for each curve
+# a default scale currently isn't coded up, so be careful here
+# base-e notation is allowed, these are floats
+[kscales]
+0X: 1.0
+0Y: 1.0
+1X: 1.0
+1Y: 1.0
+2X: 1.0
+2Y: 1.0
+3X: 1.0
+3Y: 1.0
+4X: 1.0
+4Y: 1.0
+5X: 1.0
+5Y: 1.0
+6X: 1.0
+6Y: 1.0
+7X: 1.0
+7Y: 1.0
+
+## further options for X- and Y-data for each curve
+# 'a' = read data as-is
+# 'b' = abs(data)
+[kopts]
+0X: a
+0Y: a
+1X: a
+1Y: a
+2X: a
+2Y: a
+3X: a
+3Y: a
+4X: a
+4Y: a
+5X: a
+5Y: a
+6X: a
+6Y: a
+7X: a
+7Y: a
+
+## the line-type for each curve
+# for line styles see: https://matplotlib.org/gallery/lines_bars_and_markers/line_styles_reference.html
+# for marker styles see: https://matplotlib.org/api/markers_api.html
+[klines]
+0: -
+1: -
+2: -
+3: -
+4: -
+5: -
+6: -
+7: -
+#0: -o
+#1: -o
+#2: -o
+#3: -o
+#4: -o
+#5: -o
+#6: -o
+#7: -o
+
+## the colour for each curve
+# for colour options see: https://matplotlib.org/gallery/color/named_colors.html
+[kcolors]
+0: blue
+1: red
+2: green
+3: orange
+4: magenta
+5: cyan
+6: black
+7: gray
+
+## the zorder for each curve
+# "zorder" is the order for which curve is plotted on top of one another...
+# it's actually pretty darned handy!
+[korders]
+0: 0
+1: 1
+2: 2
+3: 3
+4: 4
+5: 5
+6: 6
+7: 7
