@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-##  head -n 13 qpp.py
+##  head -n 14 qpp.py
 ##  python qpp.py config.in output_plot.pdf
 ##  By: Charlie Payne, 2018-2019
 ## DESCRIPTION
