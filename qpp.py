@@ -153,6 +153,8 @@ tight_layout(pad=0, w_pad=0, h_pad=0)
 
 # finalize
 savefig(filename)
+if figparms['show'] == 'on':
+  show()  # if you want to edit the figure from the window, put this before savefig (I guess that's possible..?)
 
 
 

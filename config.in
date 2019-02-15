@@ -2,6 +2,7 @@
 # 'knum' = the number of curves to be plotted
 # 'plot': 'a' = plot, 'b' = semilogy, 'c' = loglog
 # 'legpos' = legend position: 'upper right', 'upper left', 'lower left', 'lower right'
+# 'show' = show the plot, which is handy if you want to zoom in on data
 # 'tex' = switch global font-style to MathTex
 # 'esci' = switch scale marker from base-e notation to scienfitic (can only use when applicable)
 [figparms]
@@ -12,6 +13,7 @@ Ylen: 6
 Xlab: $X$
 Ylab: $Y$
 legpos: upper right
+show: off
 tex: off
 esci: off
 
