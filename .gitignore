@@ -3,3 +3,4 @@
 *.in
 !config.in
 *.pdf
+*.tar.gz
