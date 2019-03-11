@@ -60,7 +60,7 @@ def ParseFile(fname, colmX, colmY, scaleX, scaleY, optX, optY):
     elif optX == 'b':
       nparr[i,0] = abs(scaleX*float(tmpmat[i,0]))
     else:
-      print 'optX not recognized!'
+      print 'ERROR 6872: optX not recognized!'
       print 'fname =',fname
       print 'optX =',optX
       print 'exiting...'
@@ -70,7 +70,7 @@ def ParseFile(fname, colmX, colmY, scaleX, scaleY, optX, optY):
     elif optY == 'b':
       nparr[i,1] = abs(scaleY*float(tmpmat[i,1]))
     else:
-      print 'optY not recognized!'
+      print 'ERROR 7656: optY not recognized!'
       print 'fname =',fname
       print 'optY =',optY
       print 'exiting...'
@@ -126,7 +126,7 @@ for k in range(knum):
   elif plotopt == 'c':
     loglog(data[kmin:kmax,0], data[kmin:kmax,1], klines[str(k)], color=kcolors[str(k)], label=klabs[str(k)], zorder=int(korders[str(k)]))
   else:
-    print 'figparms[plot] not recognized!'
+    print 'ERROR 0798: figparms[plot] not recognized!'
     print 'figparms[plot] =',plotopt
     print 'exiting...'
     exit()
