@@ -1,6 +1,6 @@
 ## figure parameters/options
 # 'knum' = the number of curves to be plotted
-# 'plot': 'a' = plot, 'b' = semilogy, 'c' = loglog
+# 'axes' = plotting type: 'linear', 'semilogy', 'loglog'
 # 'legpos' = legend position: 'upper right', 'upper left', 'lower left', 'lower right'
 # 'pad' = figure boundary padding, can use any float - seems like the python default is 1.08
 # 'show' = show the plot, which is handy if you want to zoom in on data
@@ -8,7 +8,7 @@
 # 'esci' = switch scale marker from base-e notation to scienfitic (can only use when applicable)
 [figparms]
 knum: 8
-plot: a
+axes: linear
 Xlen: 6
 Ylen: 6
 Xlab: $X$
@@ -115,25 +115,26 @@ legfs:  14
 7Y: 1.0
 
 ## further options for X- and Y-data for each curve
-# 'a' = read data as-is
-# 'b' = abs(data)
+# 'def' = default, read data as-is
+# 'abs' = abs(data)
+#  NOTE - all scales from 'kscales' above are outside the chosen option here
 [kopts]
-0X: a
-0Y: a
-1X: a
-1Y: a
-2X: a
-2Y: a
-3X: a
-3Y: a
-4X: a
-4Y: a
-5X: a
-5Y: a
-6X: a
-6Y: a
-7X: a
-7Y: a
+0X: def
+0Y: def
+1X: def
+1Y: def
+2X: def
+2Y: def
+3X: def
+3Y: def
+4X: def
+4Y: def
+5X: def
+5Y: def
+6X: def
+6Y: def
+7X: def
+7Y: def
 
 ## the line-type for each curve
 # for line styles see: https://matplotlib.org/gallery/lines_bars_and_markers/line_styles_reference.html
