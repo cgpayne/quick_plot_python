@@ -1,6 +1,6 @@
 ## figure parameters/options
 # 'knum' = the number of curves to be plotted
-# 'axes' = plotting type: 'linear', 'semilogy', 'loglog'
+# 'axes' = plotting type: 'linear', 'semilogy', 'semilogx', loglog'
 # 'legpos' = legend position: 'upper right', 'upper left', 'lower left', 'lower right'
 # 'pad' = figure boundary padding, can use any float - seems like the python default is 1.08
 # 'show' = show the plot, which is handy if you want to zoom in on data

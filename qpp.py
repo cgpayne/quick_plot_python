@@ -116,19 +116,21 @@ for k in range(knum):
 
 # plot the stuff
 fig = figure(figsize=(float(figparms['Xlen']),float(figparms['Ylen'])))
-plotopt = figparms['axes']  # see 'figparms' in config.in
+axesopt = figparms['axes']  # see 'figparms' in config.in
 kmin = 0  # the lower-bound index for the data points per curve in the concatenated array 'data'
 for k in range(knum):
   kmax = lens[k] + kmin  # the upper-bound index " " " " " " " " " " "
-  if plotopt == 'linear':
+  if axesopt == 'linear':
     plot(data[kmin:kmax,0], data[kmin:kmax,1], klines[str(k)], color=kcolors[str(k)], label=klabs[str(k)], linewidth=kwidths[str(k)], zorder=int(korders[str(k)]))
-  elif plotopt == 'semilogy':
+  elif axesopt == 'semilogy':
     semilogy(data[kmin:kmax,0], data[kmin:kmax,1], klines[str(k)], color=kcolors[str(k)], label=klabs[str(k)], linewidth=kwidths[str(k)], zorder=int(korders[str(k)]))
-  elif plotopt == 'loglog':
+  elif axesopt == 'semilogx':
+    semilogx(data[kmin:kmax,0], data[kmin:kmax,1], klines[str(k)], color=kcolors[str(k)], label=klabs[str(k)], linewidth=kwidths[str(k)], zorder=int(korders[str(k)]))
+  elif axesopt == 'loglog':
     loglog(data[kmin:kmax,0], data[kmin:kmax,1], klines[str(k)], color=kcolors[str(k)], label=klabs[str(k)], linewidth=kwidths[str(k)], zorder=int(korders[str(k)]))
   else:
     print 'ERROR 0798: figparms[plot] not recognized!'
-    print 'figparms[plot] =',plotopt
+    print 'figparms[plot] =',axesopt
     print 'exiting...'
     exit()
   kmin = kmax  # don't forget to update in the concatenation, see!
