@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-##  head -n 17 qpp.py
+##  head -n 16 qpp.py
 ##  python qpp.py config.in output_plot.pdf
 ##  By: Charlie Payne, 2018-2019
 ## DESCRIPTION
@@ -9,7 +9,6 @@
 ##  it should make some sense, especially in combination with reading the default config.in (entry names are moderately intuitive)
 ## KNOWN BUGS / DESIRED FEATURES
 ##  -- it would be nice to somehow have default values for the 'kscales' and alike, for now rely on default config.in
-##  -- add in linewidths (easy)
 ##  -- maybe automate a line border
 ##  -- somehow make a sub-figure setup... :|
 ## PARAMETERS
@@ -94,6 +93,7 @@ kcolms = ConfigSectionMap('kcolms')      ## data input file column parsing for e
 kscales = ConfigSectionMap('kscales')    ## X and Y scale factors for each curve
 kopts = ConfigSectionMap('kopts')        ## further options for X- and Y-data for each curve
 klines = ConfigSectionMap('klines')      ## the line-type for each curve
+kwidths = ConfigSectionMap('kwidths')    ## the line-width for each curve
 kcolors = ConfigSectionMap('kcolors')    ## the colour for each curve
 korders = ConfigSectionMap('korders')    ## the zorder for each curve
 
@@ -120,11 +120,11 @@ kmin = 0  # the lower-bound index for the data points per curve in the concatena
 for k in range(knum):
   kmax = lens[k] + kmin  # the upper-bound index " " " " " " " " " " "
   if plotopt == 'a':
-    plot(data[kmin:kmax,0], data[kmin:kmax,1], klines[str(k)], color=kcolors[str(k)], label=klabs[str(k)], zorder=int(korders[str(k)]))
+    plot(data[kmin:kmax,0], data[kmin:kmax,1], klines[str(k)], color=kcolors[str(k)], label=klabs[str(k)], linewidth=kwidths[str(k)], zorder=int(korders[str(k)]))
   elif plotopt == 'b':
-    semilogy(data[kmin:kmax,0], data[kmin:kmax,1], klines[str(k)], color=kcolors[str(k)], label=klabs[str(k)], zorder=int(korders[str(k)]))
+    semilogy(data[kmin:kmax,0], data[kmin:kmax,1], klines[str(k)], color=kcolors[str(k)], label=klabs[str(k)], linewidth=kwidths[str(k)], zorder=int(korders[str(k)]))
   elif plotopt == 'c':
-    loglog(data[kmin:kmax,0], data[kmin:kmax,1], klines[str(k)], color=kcolors[str(k)], label=klabs[str(k)], zorder=int(korders[str(k)]))
+    loglog(data[kmin:kmax,0], data[kmin:kmax,1], klines[str(k)], color=kcolors[str(k)], label=klabs[str(k)], linewidth=kwidths[str(k)], zorder=int(korders[str(k)]))
   else:
     print 'ERROR 0798: figparms[plot] not recognized!'
     print 'figparms[plot] =',plotopt
