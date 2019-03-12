@@ -149,7 +149,7 @@ tick_params(labelsize=float(FS['tickfs']), which='both', direction='in', left=Tr
 xlabel(figparms['Xlab'], fontsize=float(FS['Xlabfs']))
 ylabel(figparms['Ylab'], fontsize=float(FS['Ylabfs']))
 legend(fontsize=float(FS['legfs']), loc=figparms['legpos'], fancybox=False, edgecolor='black')
-tight_layout(pad=0, w_pad=0, h_pad=0)
+tight_layout(pad=float(figparms['pad']), w_pad=0, h_pad=0)  # I guess the w/h_pad will make more sense once I do subplots..?
 
 # finalize
 savefig(filename)
