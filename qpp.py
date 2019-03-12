@@ -60,9 +60,9 @@ def ParseFile(fname, colmX, colmY, scaleX, scaleY, optX, optY):
     elif optX == 'abs':
       nparr[i,0] = scaleX*abs(float(tmpmat[i,0]))
     else:
-      print 'ERROR 6872: optX not recognized!'
-      print 'fname =',fname
-      print 'optX =',optX
+      print 'ERROR 6872: kopts[X] not recognized!'
+      print 'fname    =',fname
+      print 'kopts[X] =',optX
       print 'exiting...'
       exit()
     if optY == 'def':
@@ -70,9 +70,9 @@ def ParseFile(fname, colmX, colmY, scaleX, scaleY, optX, optY):
     elif optY == 'abs':
       nparr[i,1] = scaleY*abs(float(tmpmat[i,1]))
     else:
-      print 'ERROR 7656: optY not recognized!'
-      print 'fname =',fname
-      print 'optY =',optY
+      print 'ERROR 7656: kopts[Y] not recognized!'
+      print 'fname    =',fname
+      print 'kopts[Y] =',optY
       print 'exiting...'
       exit()
   return nparr
@@ -129,8 +129,8 @@ for k in range(knum):
   elif axesopt == 'loglog':
     loglog(data[kmin:kmax,0], data[kmin:kmax,1], klines[str(k)], color=kcolors[str(k)], label=klabs[str(k)], linewidth=kwidths[str(k)], zorder=int(korders[str(k)]))
   else:
-    print 'ERROR 0798: figparms[plot] not recognized!'
-    print 'figparms[plot] =',axesopt
+    print 'ERROR 0798: figparms[axes] not recognized!'
+    print 'figparms[axes] =',axesopt
     print 'exiting...'
     exit()
   kmin = kmax  # don't forget to update in the concatenation, see!
