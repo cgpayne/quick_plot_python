@@ -14,9 +14,9 @@ Ylen: 6
 Xlab: $X$
 Ylab: $Y$
 legpos: upper right
-pad: 0
+pad:  0
 show: off
-tex: off
+tex:  off
 esci: off
 
 ## limits for the plot

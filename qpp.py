@@ -42,10 +42,10 @@ def ConfigSectionMap(section):
       dict1[option] = None
   return dict1
 
-# in:   fname = filename, colX/Y = colm in file to use for X/Y-axis
+# in:   knum = curve number - 1, fname = filename, colX/Y = colm in file to use for X/Y-axis
 #         scaleX/Y = scaling factor for X/Y-data, optX/Y = see 'kopts' in config.in
 # out:  nparr = numpy array[N,2] with X- and Y-data based on the above settings
-def ParseFile(fname, colmX, colmY, scaleX, scaleY, optX, optY):
+def ParseFile(knum, fname, colmX, colmY, scaleX, scaleY, optX, optY):
   tmpmat = []  # I could probably do this part better, but it works!
   with open(fname) as f:
     for line in f:
@@ -60,9 +60,8 @@ def ParseFile(fname, colmX, colmY, scaleX, scaleY, optX, optY):
     elif optX == 'abs':
       nparr[i,0] = scaleX*abs(float(tmpmat[i,0]))
     else:
-      print 'ERROR 6872: kopts[X] not recognized!'
-      print 'fname    =',fname
-      print 'kopts[X] =',optX
+      print 'ERROR 6872: kopts[%iX] not recognized!'%(knum)
+      print 'kopts[%iX] = %s'%(knum,optX)
       print 'exiting...'
       exit()
     if optY == 'def':
@@ -70,9 +69,8 @@ def ParseFile(fname, colmX, colmY, scaleX, scaleY, optX, optY):
     elif optY == 'abs':
       nparr[i,1] = scaleY*abs(float(tmpmat[i,1]))
     else:
-      print 'ERROR 7656: kopts[Y] not recognized!'
-      print 'fname    =',fname
-      print 'kopts[Y] =',optY
+      print 'ERROR 7656: kopts[%iY] not recognized!'%(knum)
+      print 'kopts[%iY] = %s'%(knum,optY)
       print 'exiting...'
       exit()
   return nparr
@@ -110,7 +108,7 @@ lens = np.zeros(knum, dtype=np.int)  # will hold the number of points (lengths) 
 for k in range(knum):
   kX = str(k) + 'X'
   kY = str(k) + 'Y'
-  tmpdat = ParseFile(kfiles[str(k)], int(kcolms[kX]), int(kcolms[kY]), float(kscales[kX]), float(kscales[kY]), kopts[kX], kopts[kY])
+  tmpdat = ParseFile(k, kfiles[str(k)], int(kcolms[kX]), int(kcolms[kY]), float(kscales[kX]), float(kscales[kY]), kopts[kX], kopts[kY])
   lens[k] = np.shape(tmpdat)[0]
   data = np.concatenate((data,tmpdat))  # concatenate data from each curve into one array
 
