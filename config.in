@@ -183,6 +183,18 @@ legfs:  14
 6: black
 7: gray
 
+## the alpha (transparency) for each curve
+# ranges between 0 (disappears) and 1 (solid)
+[kalphas]
+0: 1
+1: 1
+2: 1
+3: 1
+4: 1
+5: 1
+6: 1
+7: 1
+
 ## the zorder for each curve
 # "zorder" is the order for which curve is plotted on top of one another...
 # can use any float - it's actually pretty darned handy!

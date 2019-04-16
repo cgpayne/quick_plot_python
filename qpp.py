@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-##  head -n 19 qpp.py
+##  head -n 18 qpp.py
 ##  python qpp.py config.in output_plot.pdf
 ##  By: Charlie Payne, 2018-2019
 ## DESCRIPTION
@@ -11,7 +11,6 @@
 ##  -- it would be nice to somehow have default values for the 'kscales' and alike, for now rely on default config.in
 ##  -- somehow generalize kopts such that the user can use any general python function on the data
 ##  -- maybe automate a line border
-##  -- add in the 'alpha' option
 ##  -- add in error bar plotting
 ##  -- somehow make a sub-figure setup... :|
 ## PARAMETERS
@@ -96,6 +95,7 @@ kopts = ConfigSectionMap('kopts')        ## further options for X- and Y-data fo
 klines = ConfigSectionMap('klines')      ## the line-type for each curve
 kwidths = ConfigSectionMap('kwidths')    ## the line-width for each curve
 kcolors = ConfigSectionMap('kcolors')    ## the colour for each curve
+kalphas = ConfigSectionMap('kalphas')    ## the alpha (transparency) for each curve
 korders = ConfigSectionMap('korders')    ## the zorder for each curve
 
 # some pre-formatting
@@ -121,13 +121,17 @@ kmin = 0  # the lower-bound index for the data points per curve in the concatena
 for k in range(knum):
   kmax = lens[k] + kmin  # the upper-bound index " " " " " " " " " " "
   if axesopt == 'linear':
-    plot(data[kmin:kmax,0], data[kmin:kmax,1], klines[str(k)], color=kcolors[str(k)], label=klabs[str(k)], linewidth=float(kwidths[str(k)]), zorder=float(korders[str(k)]))
+    plot(data[kmin:kmax,0], data[kmin:kmax,1], klines[str(k)], color=kcolors[str(k)], label=klabs[str(k)],
+      linewidth=float(kwidths[str(k)]), alpha=float(kalphas[str(k)]), zorder=float(korders[str(k)]))
   elif axesopt == 'semilogy':
-    semilogy(data[kmin:kmax,0], data[kmin:kmax,1], klines[str(k)], color=kcolors[str(k)], label=klabs[str(k)], linewidth=float(kwidths[str(k)]), zorder=float(korders[str(k)]))
+    semilogy(data[kmin:kmax,0], data[kmin:kmax,1], klines[str(k)], color=kcolors[str(k)], label=klabs[str(k)],
+      linewidth=float(kwidths[str(k)]), alpha=float(kalphas[str(k)]), zorder=float(korders[str(k)]))
   elif axesopt == 'semilogx':
-    semilogx(data[kmin:kmax,0], data[kmin:kmax,1], klines[str(k)], color=kcolors[str(k)], label=klabs[str(k)], linewidth=float(kwidths[str(k)]), zorder=float(korders[str(k)]))
+    semilogx(data[kmin:kmax,0], data[kmin:kmax,1], klines[str(k)], color=kcolors[str(k)], label=klabs[str(k)],
+      linewidth=float(kwidths[str(k)]), alpha=float(kalphas[str(k)]), zorder=float(korders[str(k)]))
   elif axesopt == 'loglog':
-    loglog(data[kmin:kmax,0], data[kmin:kmax,1], klines[str(k)], color=kcolors[str(k)], label=klabs[str(k)], linewidth=float(kwidths[str(k)]), zorder=float(korders[str(k)]))
+    loglog(data[kmin:kmax,0], data[kmin:kmax,1], klines[str(k)], color=kcolors[str(k)], label=klabs[str(k)],
+      linewidth=float(kwidths[str(k)]), alpha=float(kalphas[str(k)]), zorder=float(korders[str(k)]))
   else:
     print 'ERROR 0798: figparms[axes] not recognized!'
     print 'figparms[axes] =',axesopt
