@@ -3,9 +3,10 @@
 # 'axes' = plotting type: 'linear', 'semilogy', 'semilogx', loglog'
 # 'legpos' = legend position: 'upper right', 'upper left', 'lower left', 'lower right'
 # 'pad' = figure boundary padding, can use any float - seems like the python default is 1.08
-# 'show' = show the plot, which is handy if you want to zoom in on data
-# 'tex' = switch global font-style to MathTex
-# 'esci' = switch scale marker from base-e notation to scienfitic (can only use when applicable)
+# 'show': 'on' = show the plot, which is handy if you want to zoom in on data
+# 'legt': 'on' = make the legend partially transparent (think this is version dependent...)
+# 'tex':  'on' = switch global font-style to MathTex
+# 'esci': 'on' = switch scale marker from base-e notation to scienfitic (can only use when applicable)
 [figparms]
 knum: 8
 axes: linear
@@ -16,6 +17,7 @@ Ylab: $Y$
 legpos: upper right
 pad:  0
 show: off
+legt: off
 tex:  off
 esci: off
 

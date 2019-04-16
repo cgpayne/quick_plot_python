@@ -151,7 +151,10 @@ if figparms['esci'] == 'on':
 tick_params(labelsize=float(FS['tickfs']), which='both', direction='in', left=True, bottom=True, top=True, right=True)
 xlabel(figparms['Xlab'], fontsize=float(FS['Xlabfs']))
 ylabel(figparms['Ylab'], fontsize=float(FS['Ylabfs']))
-legend(fontsize=float(FS['legfs']), loc=figparms['legpos'], fancybox=False, edgecolor='black')
+if figparms['legt'] == 'on':
+  legend(fontsize=float(FS['legfs']), loc=figparms['legpos'], fancybox=False, edgecolor='black')
+else:
+  legend(fontsize=float(FS['legfs']), loc=figparms['legpos'], fancybox=False, edgecolor='black', framealpha=1)
 tight_layout(pad=float(figparms['pad']), w_pad=0, h_pad=0)  # I guess the w/h_pad will make more sense once I do subplots..?
 
 # finalize
