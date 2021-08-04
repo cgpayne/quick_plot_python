@@ -7,7 +7,11 @@
 ##  that said, to make it convenient it's become more of a beast than I had originally intended
 ##  and it may very well make a good basis for publishable figures, anyone's welcome to use it!
 ##  it should make some sense, especially in combination with reading the default config.in (entry names are moderately intuitive)
-## KNOWN BUGS / DESIRED FEATURES
+## KNOWN BUGS
+##  [none]
+## DESIRED FEATURES
+##  -- add in formatter for input data
+##  -- convert to python3 and flake8 standards
 ##  -- it would be nice to somehow have default values for the 'kscales' and alike, for now rely on default config.in
 ##  -- somehow generalize kopts such that the user can use any general python function on the data
 ##  -- maybe automate a line border
